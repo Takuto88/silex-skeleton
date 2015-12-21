@@ -60,7 +60,7 @@ class MessageController {
 	
 	private function toJsonArray(Message $message) {
 		return array(
-				'id' => $message-getId(),
+				'id' => $message->getId(),
 				'message' => $message->getMessage()
 		);
 	}
