@@ -31,8 +31,18 @@ $app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
         )
     )
 ));
-
 Doctrine\Common\Annotations\AnnotationRegistry::registerLoader(array($classloader, 'loadClass'));
+
+// Create SQLite database if not exists
+if(isset($app['db.options']['driver']) && $app['db.options']['driver'] === 'pdo_sqlite') {
+	if(isset($app['db.options']['path']) && (!file_exists($app['db.options']['path']) || filesize($app['db.options']['path']) === 0 )) {
+		putenv("APPLICATION_ENV=" . $env);
+		chdir(__DIR__);
+		system(PHP_BINDIR . "/php vendor/doctrine/orm/bin/doctrine.php orm:schema-tool:create");
+		header("Refresh:0");
+		exit();
+	}
+}
 
 /* i18n support */
 $app->register(new Silex\Provider\TranslationServiceProvider());
