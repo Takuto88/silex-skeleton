@@ -26,9 +26,17 @@
 	</p>
 	<div id="messages">
 	</div>
-	<button class="btn btn-primary" id="msg-btn">{{ app.translator.trans("message.fetchMessages") }}</button>
+	<button class="btn btn-primary" id="index">{{ app.translator.trans("message.fetchMessages") }}</button>
 	<hr>
-
+	
+	<h3>GET /rest/api/1/messages/{id}</h3>
+	<p>
+		{{ app.translator.trans("message.rest.getDescription") }}
+	</p>
+	<div id="message">
+	</div>
+	<input type="number" value="1" id="get-id">
+	<button class="btn btn-primary" id="get">{{ app.translator.trans("message.fetchMessage") }}</button>
 	<footer>
 		<p>© 2015 Company, Inc.</p>
 	</footer>
