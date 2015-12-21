@@ -63,6 +63,18 @@
 	{{ app.translator.trans("words.text") }}: <input type="text" value="" id="update-msg">
 	<button class="btn btn-primary" id="update">{{ app.translator.trans("button.updateMessage") }}</button>
 	<hr>
+	
+	<h3>DELETE /rest/api/1/messages/{id}</h3>
+	<p>
+		{{ app.translator.trans("message.rest.deleteDescription") }}
+	</p>
+	<div class="alert alert-success" role="alert" id="deleted-alert" style="display: none;">
+		<strong>{{ app.translator.trans("words.wellDone") }}!</strong> {{ app.translator.trans("message.messageDeleted") }}
+	</div>
+	{{ app.translator.trans("words.id") }}: <input type="number" value="1" id="delete-id">
+	<button class="btn btn-primary" id="delete">{{ app.translator.trans("button.deleteMessage") }}</button>
+	<hr>
+	
 	<footer>
 		<p>© 2015 Company, Inc.</p>
 	</footer>

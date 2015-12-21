@@ -66,7 +66,7 @@ class MessageServiceImpl implements IMessageService {
 	 * @see \SilexSkeleton\Service\IMessageService::deleteMessageById()
 	 */
 	public function deleteMessageById($id) {
-		$queryBuilder = $this->messageRepository->createQueryBuilder("msg")->delete()->where("id = :id");
+		$queryBuilder = $this->messageRepository->createQueryBuilder("msg")->delete()->where("msg.id = :id");
 		$queryBuilder->setParameter(":id", $id);
 		$affectedRows = $queryBuilder->getQuery()->execute();
 		

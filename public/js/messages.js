@@ -225,4 +225,24 @@ $(document).ready(function(){
 		});
 	});
 	
+	$('#delete').click(function(evt){
+		evt.preventDefault();
+		messageRestClient.deleteMessage({
+			beforeSend: function(){
+				$('#delete').attr('disabled', 'disabled');
+				$('#updated-alert').hide();
+			},
+			id: $('#delete-id').val(),
+			success: function(message) {
+				$('#deleted-alert').show();
+			},
+			error: function(error) {
+				alert(error.responseJSON.message);
+			},
+			complete: function() {
+				$('#delete').removeAttr('disabled');
+			}
+		});
+	});
+	
 });
