@@ -8,17 +8,22 @@
 		<p>
 			{{ app.translator.trans("message.greeting") }}
 		</p>
-		<p>
-			<form method="GET" action="/">
-				<input type="text" name="username" value="" placeholder="{{ app.translator.trans("message.whatsyourname") }}">
-				<input type="submit" class="btn btn-primary" value="{{ app.translator.trans("words.go") }} >>">
-			</form>
-		</p>
+		<form method="GET" action="/">
+			<input type="text" name="username" value="" placeholder="{{ app.translator.trans("message.whatsyourname") }}">
+			<input type="submit" class="btn btn-primary" value="{{ app.translator.trans("words.go") }} >>">
+		</form>
 	</div>
 </div>
 
 <div class="container">
 	<h2>REST API Demo</h2>
+	{{ app.translator.trans("message.rest.generalDescription") }}
+	<hr>
+	
+	<h3>GET /rest/api/1/messages</h3>
+	<p>
+		{{ app.translator.trans("message.rest.indexDescription") }}
+	</p>
 	<div id="messages">
 	</div>
 	<button class="btn btn-primary" id="msg-btn">{{ app.translator.trans("message.fetchMessages") }}</button>
