@@ -8,6 +8,13 @@
 		<p>
 			{{ app.translator.trans("message.error.code", {"%code%": code, "%message%": message} ) }}
 		</p>
+		<p>
+			{% if app.debug %}
+			<pre>
+{{ stacktrace }}
+			</pre>
+			{% endif %}
+		<p>
 	</div>
 </div>
 {% endblock %}

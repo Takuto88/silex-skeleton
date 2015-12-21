@@ -46,7 +46,7 @@ var messageRestClient = (function(){
 	}
 	
 	function create(data) {
-		data = initCallbacks(data);
+		callbacks = initCallbacks(data);
 		
 		if(typeof data.message === 'undefined') {
 			data.message = ''
@@ -183,4 +183,25 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	$('#create').click(function(evt){
+		evt.preventDefault();
+		messageRestClient.create({
+			beforeSend: function(){
+				$('#create').attr('disabled', 'disabled');
+				$('#created-alert').hide();
+			},
+			message: $('#create-msg').val(),
+			success: function(message) {
+				$('#created-alert').show();
+			},
+			error: function(error) {
+				alert(error.responseJSON.message);
+			},
+			complete: function() {
+				$('#create').removeAttr('disabled');
+			}
+		});
+	});
+	
 });

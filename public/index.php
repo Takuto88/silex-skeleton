@@ -32,6 +32,7 @@ $app->get('/', 'controllers.helloworld:sayHello');
 // REST
 $app->get('/rest/api/1/messages', 'controllers.messages:index');
 $app->get('/rest/api/1/messages/{id}', 'controllers.messages:get');
+$app->post('/rest/api/1/messages', 'controllers.messages:create');
 
 /* Exception handling */
 $app->error(function (\Exception $e, $code) use ($app){
@@ -45,10 +46,18 @@ $app->error(function (\Exception $e, $code) use ($app){
 				'message' => $message
 		);
 		
+		if($app['debug']) {
+			$response['stacktrace'] = $e->getTraceAsString();
+		}
+		
 		return new JsonResponse($response, $code);
 	}
 		
-	return $app['twig']->render("error.html", array('code' => $code, 'message' => $app['translator']->trans($e->getMessage())));
+	return $app['twig']->render("error.html", array(
+			'code' => $code, 
+			'message' => $app['translator']->trans($e->getMessage()),
+			'stacktrace' => $e->getTraceAsString()
+	));
 });
 
 $app->run();
