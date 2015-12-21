@@ -1,4 +1,5 @@
 <?php
+use Symfony\Component\HttpFoundation\JsonResponse;
 $app = require_once  __DIR__ . '/../app.php';
 
 /** @var $app \Silex\Application */
@@ -27,6 +28,27 @@ $app->before(function() use ($app){
 /* Routing */
 $app->get('/index.html', 'controllers.helloworld:sayHello');
 $app->get('/', 'controllers.helloworld:sayHello');
+
+// REST
 $app->get('/rest/api/1/messages', 'controllers.messages:index');
+$app->get('/rest/api/1/messages/{id}', 'controllers.messages:get');
+
+/* Exception handling */
+$app->error(function (\Exception $e, $code) use ($app){
+	/** @var $request \Symfony\Component\HttpFoundation\Request */
+	$request = $app['request'];
+	
+	// REST Request? Return as JSON.
+	if(strpos($request->getUri(), "/rest/api/1")) {
+		$message = $app['translator']->trans($e->getMessage());
+		$response = array(
+				'message' => $message
+		);
+		
+		return new JsonResponse($response, $code);
+	}
+		
+	return $app['twig']->render("error.html", array('code' => $code, 'message' => $app['translator']->trans($e->getMessage())));
+});
 
 $app->run();
