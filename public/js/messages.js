@@ -8,15 +8,15 @@ var messageRestClient = (function(){
 		var complete = function(){};
 		
 		if(typeof callbacks !== 'undefined') {
-			if(typeof callbacks.beforeSend !== 'undefinded') {
+			if(typeof callbacks.beforeSend !== 'undefined') {
 				beforeSend = callbacks.beforeSend;
 			}
 			
-			if(typeof callbacks.success !== 'undefinded') {
+			if(typeof callbacks.success !== 'undefined') {
 				success = callbacks.success;
 			}
 			
-			if(typeof callbacks.error !== 'undefinded') {
+			if(typeof callbacks.error !== 'undefined') {
 				error = callbacks.error;
 			}
 			
@@ -66,7 +66,7 @@ var messageRestClient = (function(){
 	}
 	
 	function get(data) {
-		data = initCallbacks();
+		callbacks = initCallbacks(data);
 		
 		if(typeof data.id === 'undefined') {
 			data.id = 0
@@ -74,7 +74,7 @@ var messageRestClient = (function(){
 		
 		$.ajax({
 			url: '/rest/api/1/messages/' + data.id,
-			type: 'DELETE',
+			type: 'GET',
 			success: callbacks.success,
 			beforeSend: callbacks.beforeSend,
 			complete: callbacks.complete,
@@ -84,7 +84,7 @@ var messageRestClient = (function(){
 	}
 	
 	function update(data) {
-		data = initCallbacks(data);
+		callbacks = initCallbacks(data);
 		
 		if(typeof data.message === 'undefined') {
 			data.message = ''
@@ -108,7 +108,7 @@ var messageRestClient = (function(){
 	}
 	
 	function deleteMessage(data) {
-		data = initCallbacks(data);
+		callbacks = initCallbacks(data);
 		
 		if(typeof data.id === 'undefined') {
 			data.id = 0
@@ -135,11 +135,11 @@ var messageRestClient = (function(){
 })();
 
 $(document).ready(function(){
-	$('#msg-btn').click(function(evt){
+	$('#index').click(function(evt){
 		evt.preventDefault();
 		messageRestClient.index({
 			beforeSend: function(){
-				$('#msg-btn').attr('disabled', 'disabled');
+				$('#index').attr('disabled', 'disabled');
 			},
 			success: function(messages) {
 				var html = '<div class="row">';
@@ -153,8 +153,33 @@ $(document).ready(function(){
 				html += '</div>';
 				$('#messages').html(html);
 			},
+			error: function(error) {
+				alert(error.responseJSON.message);
+			},
 			complete: function() {
-				$('#msg-btn').removeAttr('disabled');
+				$('#index').removeAttr('disabled');
+			}
+		});
+	});
+	
+	$('#get').click(function(evt){
+		evt.preventDefault();
+		messageRestClient.get({
+			beforeSend: function(){
+				$('#get').attr('disabled', 'disabled');
+			},
+			id: $('#get-id').val(),
+			success: function(message) {
+				var html = '<div class="row">';
+				html += '<div class="col-md-4"><h2> Message ID: ' + message.id + '</h2><p>' + message.message + '</p></div>';
+				html += '</div>';
+				$('#message').html(html);
+			},
+			error: function(error) {
+				alert(error.responseJSON.message);
+			},
+			complete: function() {
+				$('#get').removeAttr('disabled');
 			}
 		});
 	});
