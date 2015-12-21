@@ -33,6 +33,7 @@ $app->get('/', 'controllers.helloworld:sayHello');
 $app->get('/rest/api/1/messages', 'controllers.messages:index');
 $app->get('/rest/api/1/messages/{id}', 'controllers.messages:get');
 $app->post('/rest/api/1/messages', 'controllers.messages:create');
+$app->put('/rest/api/1/messages/{id}', 'controllers.messages:update');
 
 /* Exception handling */
 $app->error(function (\Exception $e, $code) use ($app){

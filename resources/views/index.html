@@ -49,6 +49,20 @@
 	
 	{{ app.translator.trans("words.text") }}: <input type="text" value="" id="create-msg">
 	<button class="btn btn-primary" id="create">{{ app.translator.trans("button.createMessage") }}</button>
+	<hr>
+	
+	<h3>PUT /rest/api/1/messages/{id}</h3>
+	<p>
+		{{ app.translator.trans("message.rest.putDescription") }}
+	</p>
+	<div class="alert alert-success" role="alert" id="updated-alert" style="display: none;">
+		<strong>{{ app.translator.trans("words.wellDone") }}!</strong> {{ app.translator.trans("message.messageUpdated") }}
+	</div>
+	
+	{{ app.translator.trans("words.id") }}: <input type="number" value="1" id="update-id">
+	{{ app.translator.trans("words.text") }}: <input type="text" value="" id="update-msg">
+	<button class="btn btn-primary" id="update">{{ app.translator.trans("button.updateMessage") }}</button>
+	<hr>
 	<footer>
 		<p>© 2015 Company, Inc.</p>
 	</footer>

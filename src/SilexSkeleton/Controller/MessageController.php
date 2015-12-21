@@ -43,7 +43,7 @@ class MessageController {
 		return new JsonResponse($this->toJsonArray($message), 201);
 	}
 	
-	public function updateMessage($id, Request $request) {
+	public function update($id, Request $request) {
 		$text = $request->get("message");
 		if(empty($text)) {
 			return new JsonResponse(null, 204);
@@ -53,7 +53,7 @@ class MessageController {
 		return new JsonResponse($this->toJsonArray($message));
 	}
 	
-	public function deleteMessage($id) {
+	public function delete($id) {
 		$this->messageService->deleteMessageById($id);
 		return new JsonResponse(null, 204);
 	}

@@ -148,7 +148,7 @@ $(document).ready(function(){
 					if(i % 3 === 0) {
 						html += '</div><div class="row">';
 					}
-					html += '<div class="col-md-4"><h2> Message ID: ' + message.id + '</h2><p>' + message.message + '</p></div>';
+					html += '<div class="col-md-4"><h4> Message ID: ' + message.id + '</h4><p>' + message.message + '</p></div>';
 				}
 				html += '</div>';
 				$('#messages').html(html);
@@ -171,7 +171,7 @@ $(document).ready(function(){
 			id: $('#get-id').val(),
 			success: function(message) {
 				var html = '<div class="row">';
-				html += '<div class="col-md-4"><h2> Message ID: ' + message.id + '</h2><p>' + message.message + '</p></div>';
+				html += '<div class="col-md-4"><h4> Message ID: ' + message.id + '</h4><p>' + message.message + '</p></div>';
 				html += '</div>';
 				$('#message').html(html);
 			},
@@ -200,6 +200,27 @@ $(document).ready(function(){
 			},
 			complete: function() {
 				$('#create').removeAttr('disabled');
+			}
+		});
+	});
+	
+	$('#update').click(function(evt){
+		evt.preventDefault();
+		messageRestClient.update({
+			beforeSend: function(){
+				$('#update').attr('disabled', 'disabled');
+				$('#updated-alert').hide();
+			},
+			id: $('#update-id').val(),
+			message: $('#update-msg').val(),
+			success: function(message) {
+				$('#updated-alert').show();
+			},
+			error: function(error) {
+				alert(error.responseJSON.message);
+			},
+			complete: function() {
+				$('#update').removeAttr('disabled');
 			}
 		});
 	});
