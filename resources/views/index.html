@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+	<div class="container">
+		<h1>{{ app.translator.trans("words.hello") }}, {{ username|escape }}!</h1>
+		<p>
+			{{ app.translator.trans("message.greeting") }}
+		</p>
+		<p>
+			<form method="GET" action="/">
+				<input type="text" name="username" value="" placeholder="{{ app.translator.trans("message.whatsyourname") }}">
+				<input type="submit" class="btn btn-primary" value="{{ app.translator.trans("words.go") }} >>">
+			</form>
+		</p>
+	</div>
+</div>
+
+<div class="container">
+	<h2>REST API Demo</h2>
+	<div id="messages">
+	</div>
+	<button class="btn btn-primary" id="msg-btn">{{ app.translator.trans("message.fetchMessages") }}</button>
+	<hr>
+
+	<footer>
+		<p>© 2015 Company, Inc.</p>
+	</footer>
+</div>
+<!-- /container -->
+{% endblock %}

@@ -1,0 +1,18 @@
+<?php 
+
+return array(
+        'debug' => false,
+        'db.options' => array(
+                'driver' => 'mysql',
+                'dbname' => '',
+                'host' => '',
+                'user' => '',
+                'password' => '',
+                'charset' => 'utf8',
+                'port' => '3306',
+        ),
+        'db.orm.options' => array(
+                'orm.default_cache' => 'apc'
+        )
+    
+);
