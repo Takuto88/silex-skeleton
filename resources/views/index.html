@@ -29,16 +29,6 @@
 	<button class="btn btn-primary" id="index">{{ app.translator.trans("button.fetchMessages") }}</button>
 	<hr>
 	
-	<h3>GET /rest/api/1/messages/{id}</h3>
-	<p>
-		{{ app.translator.trans("message.rest.getDescription") }}
-	</p>
-	<div id="message">
-	</div>
-	{{ app.translator.trans("words.id") }}: <input type="number" value="1" id="get-id">
-	<button class="btn btn-primary" id="get">{{ app.translator.trans("button.fetchMessage") }}</button>
-	<hr>
-	
 	<h3>POST /rest/api/1/messages</h3>
 	<p>
 		{{ app.translator.trans("message.rest.postDescription") }}
@@ -49,6 +39,16 @@
 	
 	{{ app.translator.trans("words.text") }}: <input type="text" value="" id="create-msg">
 	<button class="btn btn-primary" id="create">{{ app.translator.trans("button.createMessage") }}</button>
+	<hr>
+	
+	<h3>GET /rest/api/1/messages/{id}</h3>
+	<p>
+		{{ app.translator.trans("message.rest.getDescription") }}
+	</p>
+	<div id="message">
+	</div>
+	{{ app.translator.trans("words.id") }}: <input type="number" value="1" id="get-id">
+	<button class="btn btn-primary" id="get">{{ app.translator.trans("button.fetchMessage") }}</button>
 	<hr>
 	
 	<h3>PUT /rest/api/1/messages/{id}</h3>
