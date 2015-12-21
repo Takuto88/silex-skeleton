@@ -68,6 +68,7 @@ $(document).ready(function(){
 					}
 					html += '<div class="col-md-4"><h2> Message ID: ' + message.id + '</h2><p>' + message.message + '</p></div>';
 				}
+				html += '</div>';
 				$('#messages').html(html);
 			},
 			complete: function() {
