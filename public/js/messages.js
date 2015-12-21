@@ -43,11 +43,93 @@ var messageRestClient = (function(){
 			complete: callbacks.complete,
 			error: callbacks.error
 		});
+	}
+	
+	function create(data) {
+		data = initCallbacks(data);
+		
+		if(typeof data.message === 'undefined') {
+			data.message = ''
+		}
+		
+		$.ajax({
+			url: '/rest/api/1/messages',
+			type: 'POST',
+			data: {
+				message: data.message
+			},
+			success: callbacks.success,
+			beforeSend: callbacks.beforeSend,
+			complete: callbacks.complete,
+			error: callbacks.error
+		});
+	}
+	
+	function get(data) {
+		data = initCallbacks();
+		
+		if(typeof data.id === 'undefined') {
+			data.id = 0
+		}
+		
+		$.ajax({
+			url: '/rest/api/1/messages/' + data.id,
+			type: 'DELETE',
+			success: callbacks.success,
+			beforeSend: callbacks.beforeSend,
+			complete: callbacks.complete,
+			error: callbacks.error
+		});
 		
 	}
 	
+	function update(data) {
+		data = initCallbacks(data);
+		
+		if(typeof data.message === 'undefined') {
+			data.message = ''
+		}
+		
+		if(typeof data.id === 'undefined') {
+			data.id = 0
+		}
+		
+		$.ajax({
+			url: '/rest/api/1/messages/' + data.id,
+			type: 'PUT',
+			data: {
+				message: data.message
+			},
+			success: callbacks.success,
+			beforeSend: callbacks.beforeSend,
+			complete: callbacks.complete,
+			error: callbacks.error
+		});
+	}
+	
+	function deleteMessage(data) {
+		data = initCallbacks(data);
+		
+		if(typeof data.id === 'undefined') {
+			data.id = 0
+		}
+		
+		$.ajax({
+			url: '/rest/api/1/messages/' + data.id,
+			type: 'DELETE',
+			success: callbacks.success,
+			beforeSend: callbacks.beforeSend,
+			complete: callbacks.complete,
+			error: callbacks.error
+		});
+	}
+	
 	return {
-		index: index
+		index: index,
+		get: get,
+		create: create,
+		update: update,
+		deleteMessage: deleteMessage
 	};
 	
 })();
