@@ -7,18 +7,10 @@ $app = require_once  __DIR__ . '/../app.php';
 /* Detect language by accept-language header */
 $app->before(function() use ($app){
 	// i18n
-	
-	// Read avaliable locales
-	$localeFiles = glob(__DIR__ . '/../resources/i18n/*.php');
-	$locales = array();
-	foreach($localeFiles as $file) {
-		$locales[] = basename($file, ".php");
-	}
-	
 	// Set locale according to HTTP Accept-Language Header
 	/** @var $request \Symfony\Component\HttpFoundation\Request */
 	$request = $app['request'];
-	$locale = $request->getPreferredLanguage($locales);
+	$locale = $request->getPreferredLanguage(array_keys($app['locales']));
 	
 	/** @var $i18n \Symfony\Component\Translation\Translator */
 	$i18n = $app['translator'];

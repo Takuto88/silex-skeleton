@@ -46,10 +46,22 @@ if(isset($app['db.options']['driver']) && $app['db.options']['driver'] === 'pdo_
 
 /* i18n support */
 $app->register(new Silex\Provider\TranslationServiceProvider());
+$app['locales'] = $app->share(function() use ($app){
+	// Read avaliable locales
+	$localeFiles = glob(__DIR__ . '/resources/i18n/*.php');
+	$locales = array();
+	foreach($localeFiles as $file) {
+		$locale = basename($file, ".php");
+		$locales[$locale] = $file;
+	}
+	
+	return $locales;
+});
 $app['translator'] = $app->share($app->extend('translator', function($translator, $app) {
-    $translator->addResource('array', require __DIR__ . '/resources/i18n/de.php', 'de');
-    $translator->addResource('array', require __DIR__ . '/resources/i18n/en.php', 'en');
-    
+	foreach($app['locales'] as $locale => $file) {
+		$translator->addResource('array', require $file, $locale);
+	}
+	
     return $translator;
 }));
 $app['twig']->addExtension(new Symfony\Bridge\Twig\Extension\TranslationExtension($app['translator']));
