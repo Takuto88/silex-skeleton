@@ -92,6 +92,7 @@ The most important files and folders are:
   - **/src/SilxSkeleton/Exception:** The exceptions for your app.
   - **/src/SilexSkeleton/Service:** The businesslogic aka app services. The root folder is used for the interface specs
   - **/src/SilexSkeleton/Service/Impl:** The implementation of the interfaces
+
 ## How to
 
 ### Use a different config-file
