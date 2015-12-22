@@ -49,7 +49,7 @@ In your `httpd-vhosts.conf`, include the follwing directive:
   ServerName silex-demo.dev # Must match your hosts-file name!
   DocumentRoot "/path/to/your/project/public" # Be sure to point to the /public folder in your project!
   
-  <Directory /var/www/maxisforum/>
+  <Directory /path/to/your/project>
     Options Indexes FollowSymLinks MultiViews
     AllowOverride All # Not recommended on production systems
     
@@ -96,7 +96,7 @@ I'm old, I just use Apache as it is good enough for me :smile:. Feel free to sen
 
 Look at `resources/config.php.dist` for an example. For reference, I'll include that here.
 
-```
+```php
 <?php 
 
 return array(
@@ -123,7 +123,7 @@ It is highly encouraged, that you use namespaces for your projects. Assuming you
 
 - Create a folder called "MyApp" under '/src'
 - If you are going to use doctrine for your database mapping, you must make it aware of your entities. Edit the `app.php` and look for: 
-```
+```php
 <?php
 $app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider(), array(
     'orm.proxies_dir' => __DIR__ . "/resources/cache/doctrine/proxy",
@@ -147,7 +147,7 @@ And you're done. Of course you can delete `src/SilexSkeleton` if you have no mor
 I am assuming we are using the SilexSkeleton namespace for now. This is an example of what's needed:
 
 **Controller: /src/SilexSkeleton/Controller/MyNewController.php**
-```
+```php
 <?php 
 namespace SilexSkeleton\Controller;
 
@@ -177,7 +177,7 @@ class MyNewController {
 ```
 
 **Depenendy injection wiring: /app.php**
-```
+```php
 <?php
 // [...]
 $app['controllers.mynewcontoller'] = $app->share(function() use ($app){
@@ -187,7 +187,7 @@ $app['controllers.mynewcontoller'] = $app->share(function() use ($app){
 ```
 
 **Route: /public/index.php**
-```
+```php
 <?php
 $app->get('/myaction', 'controllers.mynewcontroller:doMyAction');
 ```
@@ -207,7 +207,7 @@ You can also add more specific files:
 
 The files itsef must look like this:
 
-```
+```php
 <?php
 
 return array(
@@ -215,10 +215,10 @@ return array(
 );
 ```
 
-## Doctrine ORM hint
+## Doctrine ORM pointers
 
 As the database abstraction layer is handled by Doctrine, you should make yourself familiar with the doctrine anotations in order to create your database schema. The [annotation documentation](http://doctrine-common.readthedocs.org/en/latest/reference/annotations.html) will help you out.
 
 Also, the doctrine command line tool is very useful. Just run `php /vendor/bin/doctrine`. That script is broken if you are using Windows. Run `php /vendor/doctrine/orm/bin/doctrine.php` instead and it will work fine. [Here is some documentation](http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/tools.html) on the tool itself. 
 
-Don't be afraid of doctrine! It is actually very simple and once you've grasped it, you don't ever want to go back to plain SQL anymore.
+Don't be afraid of Doctrine! It is actually very simple and once you've grasped it, you don't ever want to go back to plain SQL anymore.
