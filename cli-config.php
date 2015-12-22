@@ -9,7 +9,7 @@ define('BASE_PATH', __DIR__);
 $env = getenv('APPLICATION_ENV');
 
 if(!$env) {
-	echo "*** WARNING ***\n";
+    echo "*** WARNING ***\n";
     echo "Please specify your APPLICATION_ENV variable which is used to determaine what config to use!\n";
     echo "On Unix-like systems, run 'export APPLICATION_ENV=foo' to achive this.\n\n";
     echo "Defaulting to 'config'.\n";
