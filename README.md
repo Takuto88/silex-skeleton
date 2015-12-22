@@ -31,7 +31,7 @@ Also for initial setup, it is highly recommended that the php executable is in y
 2. run `composer create-project Takuto88/silex-skeleton path/to/install`. Composer will create a folder for your and install the new project. 
 3. [Configure your system and webserver](#sysconfig)
 4. Assuming you have configured your webserver to `silex-demo.dev`, navigate to http://silex-demo.dev
-5. Enjoy! You can always read a [how-to](#howto) in order to proceed.
+5. Enjoy! You can always read a [how-to](#how-to) in order to proceed.
 
 ### <a name="sysconfig"></a> System and webserver config
 
@@ -139,6 +139,8 @@ return array(
 );
 ```
 
+Then run `php vendor/bin/doctrine orm:schema-tool:create` in order to have doctrine setup your database automatically for you. Under Windows, use `php vendor/doctrine/orm/bin/doctrine.php orm:schema-tool:create` instead, as the other one only works on Unix-like systems.
+
 ### Use a different namespace
 
 It is highly encouraged, that you use namespaces for your projects. Assuming you would like to add the namespace named `MyApp`:
@@ -241,6 +243,6 @@ return array(
 
 As the database abstraction layer is handled by Doctrine, you should make yourself familiar with the doctrine anotations in order to create your database schema. The [annotation documentation](http://doctrine-common.readthedocs.org/en/latest/reference/annotations.html) will help you out.
 
-Also, the doctrine command line tool is very useful. Just run `php /vendor/bin/doctrine`. That script is broken if you are using Windows. Run `php /vendor/doctrine/orm/bin/doctrine.php` instead and it will work fine. [Here is some documentation](http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/tools.html) on the tool itself. 
+Also, the doctrine command line tool is very useful. Just run `php vendor/bin/doctrine`. That script is broken if you are using Windows. Run `php vendor/doctrine/orm/bin/doctrine.php` instead and it will work fine. [Here is some documentation](http://doctrine-orm.readthedocs.org/projects/doctrine-orm/en/latest/reference/tools.html) on the tool itself. 
 
 Don't be afraid of Doctrine! It is actually very simple and once you've grasped it, you don't ever want to go back to plain SQL anymore.
