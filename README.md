@@ -161,7 +161,7 @@ class MyNewController {
 	}
   
   public function doMyAction() {
-    return $this->twigEnv->render("myaction.html", array());
+    return $this->twig->render("myaction.html", array());
   }
   
 }
