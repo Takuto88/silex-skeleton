@@ -13,8 +13,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 		'twig.path' => __DIR__ . '/resources/views'
 ));
 
-$baseNamespace = "SilexSkeleton";
-
 /* ORM Setup */
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => $app['db.options']
@@ -25,8 +23,8 @@ $app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider
         "mappings" => array(
             array(
                 'type' => 'annotation',
-                'namespace' =>  $baseNamespace . '\Entity',
-                'path' => __DIR__ . "/src/" . $baseNamespace . "/Entity"
+                'namespace' => 'SilexSkeleton\Entity',
+                'path' => __DIR__ . "/src/SilexSkeleton/Entity"
             )
         )
     )
