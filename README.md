@@ -72,6 +72,26 @@ In your `httpd-vhosts.conf`, include the follwing directive:
 </VirtualHost>
 ```
 
+
+## Project structure
+
+The most important files and folders are:
+
+- **/app.php:** The [dependency injection](http://silex.sensiolabs.org/doc/services.html#dependency-injection) wiring of your app
+- **/public:** Everything the browser needs to be able to access goes here
+  - **/public/index.php:** The routing config and exception handling
+- **/composer.json:** Manage your third party dependencies here.
+- **/resources:** Contains resources for your app
+- **/resources/config:** Put your application config in here
+  - **/resources/i18n:** Put your language strings here for internationalization
+  - **/resources/views:** Layouts and views go in here
+- **/vendor:** Composer installs all dependencies like silex in here
+- **/src:** The source of your application. Contains the SilexSkeleton Demo app.
+  - **/src/SilexSkeleton/Controller:** The Controllers
+  - **/src/SilexSkeleton/Entity:** Database entities go in here. You can use them in your business logic as well as in your views
+  - **/src/SilxSkeleton/Exception:** The exceptions for your app.
+  - **/src/SilexSkeleton/Service:** The businesslogic aka app services. The root folder is used for the interface specs
+  - **/src/SilexSkeleton/Service/Impl:** The implementation of the interfaces
 ## How to
 
 ### Use a different config-file
