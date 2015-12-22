@@ -36,8 +36,15 @@ if(isset($app['db.options']['driver']) && $app['db.options']['driver'] === 'pdo_
 	if(isset($app['db.options']['path']) && (!file_exists($app['db.options']['path']) || filesize($app['db.options']['path']) === 0 )) {
 		putenv("APPLICATION_ENV=" . $env);
 		chdir(__DIR__);
-		system(PHP_BINDIR . "/php vendor/doctrine/orm/bin/doctrine.php orm:schema-tool:create");
-		header("Refresh:0");
+		$result = null;
+		system("php vendor/doctrine/orm/bin/doctrine.php orm:schema-tool:create", $result);
+		if($result !== 0) {
+			echo "<h1>Error creating SQLite Demo Database!</h1>";
+			echo "Could not run 'php vendor/doctrine/orm/bin/doctrine.php orm:schema-tool:create'.<br><br>";
+			echo "Please ensure that the php executable is in your PATH and refresh the page or run the command above manually!";
+		} else {
+			header('Refresh:0');
+		}
 		exit();
 	}
 }
