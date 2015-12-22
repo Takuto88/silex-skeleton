@@ -1,4 +1,8 @@
 {
+	"name": "takuto88/silex-skeleton",
+    "description": "A preconfigured Silex starter project.",
+    "license": "MIT",
+    "type": "project",
     "repositories": [
         {
             "type": "vcs",
