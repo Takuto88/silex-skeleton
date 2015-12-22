@@ -10,7 +10,6 @@
         "igorw/config-service-provider": "1.2.2",
         "dflydev/doctrine-orm-service-provider": "v1.0.7",
         "symfony/translation": "~3.0",
-        "twig/twig": "^1.23",
         "symfony/twig-bridge": "^3.0"
     },
     
