@@ -23,6 +23,7 @@ It also includes a simple demo app that shows you how ...
 ### Prerequisites
 
 You must have [composer](https://getcomposer.org) and [git](https://git-scm.com) installed on your system.
+Also for initial setup, it is highly recommended that the php executable is in your PATH.
 
 ### Creating a new project
 
