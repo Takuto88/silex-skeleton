@@ -39,6 +39,9 @@ class MessageController {
 			return new JsonResponse(null, 204);
 		}
 		
+		// XSS filter
+		$text = strip_tags($text);
+		
 		$message = $this->messageService->createMessage($text);
 		return new JsonResponse($this->toJsonArray($message), 201);
 	}
@@ -48,6 +51,9 @@ class MessageController {
 		if(empty($text)) {
 			return new JsonResponse(null, 204);
 		}
+		
+		// XSS filter
+		$text = strip_tags($text);
 		
 		$message = $this->messageService->updateMessage($id, $text);
 		return new JsonResponse($this->toJsonArray($message));
