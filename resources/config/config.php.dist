@@ -3,7 +3,7 @@
 return array(
         'debug' => false,
         'db.options' => array(
-                'driver' => 'mysql',
+                'driver' => 'pdo_mysql',
                 'dbname' => '',
                 'host' => '',
                 'user' => '',
